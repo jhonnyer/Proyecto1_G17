@@ -40,9 +40,9 @@ public class IndexController {
 	public String indexParam(@PathVariable("nombre") String nombre) {
 		System.out.println(USERNAME);
 		System.out.println("Hola "+nombre+" bienvenido al sistema");
-		System.out.println("Test GIT 1 ");
-		System.out.println("Test GIT 2 ");
-		System.out.println("Test GIT 3 ");
+		System.out.println("Test GIT 1 de prueba ");
+		System.out.println("Test GIT 2 de prueba");
+		System.out.println("Test GIT 3 de prueba");
 		return nombre;
 	}
 	

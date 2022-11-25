@@ -41,7 +41,7 @@ public class IndexController {
 		System.out.println(USERNAME);
 		System.out.println("Hola "+nombre+" bienvenido al sistema");
 		System.out.println("Test GIT 1 ");
-		System.out.println("Test GIT 2 ");
+		System.out.println("Test GIT 2, ejemplo conflictos en repositorio");
 		System.out.println("Test GIT 3 ");
 		return nombre;
 	}

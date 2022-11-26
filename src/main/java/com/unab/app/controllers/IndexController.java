@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
 //	private static final String USERNAME ="Jhonnyer";
-	@Value("${text.indexController.name}")
+	@Value("${text.indexController.titulo}")
 	private String USERNAME;
 	
 	@RequestMapping(value="/prueba", method = RequestMethod.GET)

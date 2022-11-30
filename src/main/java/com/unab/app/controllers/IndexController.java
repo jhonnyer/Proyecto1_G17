@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unab.app.models.Usuario;
-import com.unab.app.service.IServicio;
+import com.unab.app.service.interfaces.IServicio;
 
 @RestController
 @RequestMapping(value="/test")

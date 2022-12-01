@@ -25,12 +25,12 @@ public class ProductoController {
 		return productoService.findByNombre(nombre);
 	}
 	
-	@PostMapping("/getProductoId/{id}")
+	@GetMapping("/getProductoId/{id}")
 	public Producto findProductoById(@PathVariable("id") Long id) {
 		return productoService.findProductoById(id);
 	}
 	
-	@GetMapping("/save")
+	@PostMapping("/save")
 	public Producto saveProducto(@RequestBody Producto producto) {
 		productoService.save(producto);
 		return producto;
@@ -39,7 +39,7 @@ public class ProductoController {
 	
 	@GetMapping("/getProductoPageable")
 	public Page<Producto> findAllPageable() {
-		Pageable pageable = PageRequest.of(1, 10);
+		Pageable pageable = PageRequest.of(0, 5);
 		return productoService.findAll(pageable);
 	}
 }

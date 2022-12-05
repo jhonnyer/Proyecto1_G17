@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.unab.app.security.filter.JWTAuthenticationFilter;
+import com.unab.app.security.filter.JWTAuthorizationFilter;
 
 @EnableGlobalMethodSecurity(securedEnabled=true, prePostEnabled=true)
 @SuppressWarnings("deprecation")
@@ -35,6 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 			.anyRequest().authenticated()
 			.and()
 			.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
+			.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService))
 			.csrf()
 			.disable()
 			.sessionManagement();

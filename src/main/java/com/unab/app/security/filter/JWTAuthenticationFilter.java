@@ -37,6 +37,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		this.jwtService=jwtService;
 	}
 
+	@SuppressWarnings("null")
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
@@ -52,7 +53,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			logger.info("Username desde request parameter (form-data): "+username);
 			logger.info("Username desde request parameter (form-data): "+password);
 		}else {
-			@SuppressWarnings("unused")
 			Usuario user=null;
 			try {
 				user =new ObjectMapper().readValue(request.getInputStream(), Usuario.class);

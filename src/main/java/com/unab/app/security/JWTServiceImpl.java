@@ -1,11 +1,13 @@
 package com.unab.app.security;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
@@ -54,19 +56,23 @@ public class JWTServiceImpl implements IJWTService{
 	@Override
 	public Claims getClaims(String token) {
 		return Jwts.parser()
-				.setSigningKey(SECRET.getBytes())
-				.parseClaimsJwt(resolve(token))
-				.getBody();
+				.setSigningKey(SECRET.getBytes()) //obtenemos la llave con la key firmada
+				.parseClaimsJws(resolve(token))
+				.getBody();  //obtenemos el token
 	}
 
 	@Override
 	public String getUsername(String token) {
-		return null;
+		return getClaims(token).getSubject();  //Reutilizamos el claims para obtener el username del token
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException {
-		return null;
+		Object roles=getClaims(token).get("authorities");
+		Collection<? extends GrantedAuthority> authorities = Arrays.asList(new ObjectMapper()
+				.addMixIn(SimpleGrantedAuthority.class, SimpleGrantedAuthorityMixin.class)  //para añadirle los roles al token de autenticacion
+				.readValue(roles.toString().getBytes(), SimpleGrantedAuthority[].class));
+		return authorities;
 	}
 
 	@Override

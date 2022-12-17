@@ -4,13 +4,20 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 import com.unab.app.models.Cliente;
 
 public interface IClienteService {
-	public List<Cliente> findAll();    //listar clientes
-	public Page<Cliente> findAll(Pageable pageable);   //listar a partir de un pageable
-	public void save(Cliente cliente);  //Crear
-	public Cliente findOne(Long id);   //Consultar por id
-	public void delete(Long id);    //Eliminar
+	public List<Cliente> findAll();
+
+	public Page<Cliente> findAll(Pageable pageable);
+
+	public ResponseEntity<?> save(Cliente cliente);
+	
+	public ResponseEntity<?> update(Long id, Cliente cliente);
+
+	public ResponseEntity<?> findOne(Long id);
+
+	public ResponseEntity<?> delete(Long id);
 }
